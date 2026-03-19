@@ -6,7 +6,6 @@
 const int SALARY = 200;
 using namespace std;
 
-//works
 void Work(User& user){
     cout << "How many hours will you work?\n";
     bool out = false;
