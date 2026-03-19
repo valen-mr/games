@@ -55,7 +55,7 @@ void Roulette(User& user){
                         cout << '\n';
                     }
                     user.ext(bet);
-                    int result = rand() % 37;
+                    int result = rand() % 38;
                     int reward = 0;
                     char reslet;
                     cout << "\033[1;31m";
