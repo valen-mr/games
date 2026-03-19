@@ -11,6 +11,10 @@ int User::getBal() const{
     return this->bal;
 }
 
+void User::setBal(int n){
+    this->bal = n;
+}
+
 string User::getName() const{
     return this->name;
 }
@@ -25,7 +29,7 @@ void userCheck(User& user){
     else{
         int cash;
         fin >> cash;
-        user.add(cash);
+        user.setBal(cash);
     }
 }
 
@@ -42,7 +46,7 @@ void User::add(int sum){
 }
 
 void User::ext(int sum){
-    this->bal += sum;
+    this->bal -= sum;
     int balance;
     ifstream userFile("user.txt");
     ofstream temp("temp.txt");

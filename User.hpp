@@ -9,6 +9,7 @@ class User{
     public:
         User();
         int getBal() const;
+        void setBal(int);
         string getName() const;
         void add(int);
         void ext(int); //assumes int < balance
