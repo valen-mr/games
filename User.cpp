@@ -1,5 +1,6 @@
 #include "User.hpp"
 #include <fstream>
+#include <iostream>
 
 User::User(){
     string n;
@@ -13,6 +14,10 @@ int User::getBal() const{
 
 void User::setBal(int n){
     this->bal = n;
+    ofstream temp("temp.txt");
+    temp << n;
+    remove("user.txt");
+    rename("temp.txt", "user.txt");
 }
 
 string User::getName() const{
@@ -22,9 +27,7 @@ string User::getName() const{
 void userCheck(User& user){
     ifstream fin("user.txt");
     if (!fin){
-        ofstream userFile("user.txt");
-        user.add(200);
-        userFile << 200;
+        user.setBal(200);
     }
     else{
         int cash;
@@ -35,24 +38,16 @@ void userCheck(User& user){
 
 void User::add(int sum){
     this->bal += sum;
-    int balance;
-    ifstream userFile("user.txt");
     ofstream temp("temp.txt");
-    userFile >> balance;
-    balance += sum;
-    temp << balance;
+    temp << this->bal;
     remove("user.txt");
     rename("temp.txt", "user.txt");
 }
 
 void User::ext(int sum){
-    this->bal -= sum;
-    int balance;
-    ifstream userFile("user.txt");
+   this->bal -= sum;
     ofstream temp("temp.txt");
-    userFile >> balance;
-    balance -= sum;
-    temp << balance;
+    temp << this->bal;
     remove("user.txt");
     rename("temp.txt", "user.txt");
 }

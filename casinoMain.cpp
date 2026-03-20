@@ -26,9 +26,10 @@ void Work(User& user){
 
 int main(){
     try{
+        srand(time(0));
         User user;
-        cout << "\n";
         userCheck(user); //user.txt generated
+        cout << "\n";
         bool menu = true;
         while(menu){
             cout << "MAIN MENU\n\n";

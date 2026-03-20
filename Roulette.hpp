@@ -7,5 +7,10 @@ struct rResult {
     int num;
 };
 
+struct choice{
+    int num;
+    int bid;
+};
+
 //Enter Roulette menu
 void Roulette(User&);
