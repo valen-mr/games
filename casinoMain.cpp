@@ -1,8 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <random>
-#include <set>
 #include "User.hpp"
+#include "Roulette.hpp"
 const int SALARY = 200;
 using namespace std;
 
@@ -22,88 +22,6 @@ void Work(User& user){
     user.add(money);
 
     cout << "\n\033[1;31mYou worked for " << hours << "hour/s and recieved \033[1;32m$" << money << "\033[1;31m, you have: \033[1;32m$" << user.getBal() << "\n\n\033[0m";
-}
-
-void Roulette(User& user){
-    bool roulette = true;
-
-    while (roulette){
-        cout << "\n";
-        int bet = 0;
-        cout << "ROULETTE\n\n";
-        cout << "Gamble (g)\n";
-        cout << "Back (b) \n";
-        cout << "\n\033[1;31mYou have \033[1;32m$" << user.getBal() << "\n\n\033[0m";
-        char choice;
-        cin >> choice;
-        if (choice == 'g'){
-            cout << "\nEnter bet: ";
-            cin >> bet;
-            cout << "\n";
-            int mult = 0;
-            if (bet > 0 && bet <= user.getBal()){
-                cout << "Red (r) \nBlack (b)\nNumber(n)\n";
-                char letter;
-                cin >> letter;
-                cout << "\n";
-                if(letter == 'r' || letter == 'b' || letter == 'n'){
-                    int num;
-                    if (letter == 'n'){
-                        cout << "Choose from 0-37: ";
-                        cin >> num;
-                        cout << '\n';
-                    }
-                    user.ext(bet);
-                    int result = rand() % 38;
-                    int reward = 0;
-                    char reslet;
-                    cout << "\033[1;31m";
-                    if(result % 2 == 0 && result != 0){
-                        cout << "BLACK ";
-                        reslet = 'b';
-                    }
-                    else if(result % 2 != 0 && result != 0){
-                        cout << "RED ";
-                        reslet = 'r';
-                    }
-                    else{
-                        cout << "GREEN ";
-                        reslet = 'g';
-                    }
-                    cout << result << " : ";
-                    if (letter == 'r' || letter == 'b'){
-                        //red
-                        if (letter == reslet){
-                            cout << "WIN : \033[1;32m+$";
-                            reward = bet * 2;
-                        }
-                    }
-                    else{
-                        if (num == result){
-                            cout << "WIN : \033[1;32m+$";
-                            reward = bet * 37;
-                        }
-                    }
-                    if (reward != 0){
-                        cout << reward << "\n";
-                        user.add(reward);
-                    }
-                    else
-                        cout << "LOSE\n" ;
-                    bet = 0;
-                    cout << "\033[0m";
-                }
-            }
-            else if (bet < 0) {
-                cout << "\nfunny";
-            }
-            else 
-                cout << "insuficient funds";
-        }
-        else if (choice == 'b'){
-            roulette = false;
-        }
-    }
 }
 
 int main(){
